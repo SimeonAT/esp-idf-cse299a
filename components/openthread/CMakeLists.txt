@@ -135,6 +135,7 @@ if(CONFIG_OPENTHREAD_ENABLED)
     elseif(CONFIG_OPENTHREAD_RADIO_SPINEL_UART OR CONFIG_OPENTHREAD_RADIO_SPINEL_SPI)
         list(APPEND exclude_srcs
             "src/port/esp_openthread_radio.c"
+            "src/port/cse299a_encryption_debug.c"
             "src/port/esp_openthread_sleep.c")
     endif()
 
