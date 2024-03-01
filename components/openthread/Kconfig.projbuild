@@ -1,0 +1,41 @@
+#
+# I use the following resource to learn how to create KConfig
+# configurations:
+# https://medium.com/@bhautik.markeye/esp-idf-configuration-how-to-add-custom-configuration-in-project-config-728f81b8d0d8.
+#
+
+menu "CSE 299A OpenThread Encryption"
+
+  config CSE299A_CIPHER_SUITE
+    int "Determines which cipher suite OpenThread should use."
+    default 0
+    range 0 2
+    help
+      Option "0" enables AES encryption (default).
+      Option "1" disables all encryption.
+      Option "2" enables ASCON encryption.
+
+  config CSE299A_DEBUG_ENABLED
+    int "Enable debugging print statements."
+    default 0
+    range 0 1
+    help
+      Set to option "1" to enable debugging print statements.
+      By default, debugging print statements are disabled
+      (i.e. option "0").
+
+  config CSE299A_ASCON_RCP
+    int "Is the current device running the Radio Co-Processor (RCP)?"
+    default 0
+    range 0 1
+    help
+      Set option to "1" is to indicate that OpenThread will be running
+      on the RCP, which is used by the ESP Thread Border Router.
+      In the case that the device is running the RCP, ASCON MAC layer
+      encryption will be turned off. The responsibility for MAC layer
+      encryption will be handled by the host process.
+
+      This option only applies when the ASCON cipher suite is used
+      (i.e. when CSE299A_CIPHER_SUITE == 2).
+
+  endmenu
