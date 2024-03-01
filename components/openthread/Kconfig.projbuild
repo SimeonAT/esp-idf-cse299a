@@ -24,18 +24,4 @@ menu "CSE 299A OpenThread Encryption"
       By default, debugging print statements are disabled
       (i.e. option "0").
 
-  config CSE299A_ASCON_RCP
-    int "Is the current device running the Radio Co-Processor (RCP)?"
-    default 0
-    range 0 1
-    help
-      Set option to "1" is to indicate that OpenThread will be running
-      on the RCP, which is used by the ESP Thread Border Router.
-      In the case that the device is running the RCP, ASCON MAC layer
-      encryption will be turned off. The responsibility for MAC layer
-      encryption will be handled by the host process.
-
-      This option only applies when the ASCON cipher suite is used
-      (i.e. when CSE299A_CIPHER_SUITE == 2).
-
   endmenu
