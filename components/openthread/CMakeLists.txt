@@ -31,7 +31,7 @@ if(CONFIG_OPENTHREAD_ENABLED)
         "openthread/src/core/api"
         "openthread/src/core/common"
         "openthread/src/core/crypto"
-        "openthread/src/core/crypto/ascon_esp32"
+        "openthread/src/core/crypto/ascon128av12_esp32"
         "openthread/src/core/diags"
         "openthread/src/core/instance"
         "openthread/src/core/mac"
