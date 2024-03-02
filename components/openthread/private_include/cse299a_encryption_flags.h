@@ -31,14 +31,14 @@
  * Helped me realize that enums operate after compile time, and thus,
  * will lead to buggy behavior when used with preprocessor directives.
 */
+#define CIPHER_SUITE CONFIG_CSE299A_CIPHER_SUITE
+
 #define AES 0
 #define NONE 1
 
 #define ASCON_ENABLED (CIPHER_SUITE >= 2)
 #define ASCON_128A_ESP32 (CIPHER_SUITE == 2)
 #define ASCON_128A_REF (CIPHER_SUITE == 3)
-
-#define CIPHER_SUITE CONFIG_CSE299A_CIPHER_SUITE
 
 #define AES_DATA_ENCRYPT (CIPHER_SUITE == AES)
 #define AES_DATA_DECRYPT (CIPHER_SUITE == AES)
