@@ -13,7 +13,8 @@ menu "CSE 299A OpenThread Encryption"
     help
       Option "0" enables AES encryption (default).
       Option "1" disables all encryption.
-      Option "2" enables ASCON encryption.
+      Option "2" enables the ESP32 optimized version of ASCON-128a.
+      Option "3" enables the reference implementation of ASCON-128a.
 
   config CSE299A_DEBUG_ENABLED
     int "Enable debugging print statements."
