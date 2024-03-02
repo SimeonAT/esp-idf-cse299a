@@ -9,7 +9,7 @@ menu "CSE 299A OpenThread Encryption"
   config CSE299A_CIPHER_SUITE
     int "Determines which cipher suite OpenThread should use."
     default 0
-    range 0 2
+    range 0 3
     help
       Option "0" enables AES encryption (default).
       Option "1" disables all encryption.
