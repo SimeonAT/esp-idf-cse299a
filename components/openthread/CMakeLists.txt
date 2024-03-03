@@ -16,8 +16,6 @@ endif()
 # I learned how to use CMake variables from the Stack Overflow post:
 # https://stackoverflow.com/a/31044116
 
-set(cse299a_ascon_loc "openthread/src/core/crypto/cse299a_ascon")
-
 if(CONFIG_CSE299A_CIPHER_SUITE EQUAL "2")
 
     set(ascon_file_loc "openthread/src/core/crypto/ascon128av12_esp32")
@@ -249,7 +247,7 @@ if (CONFIG_CSE299A_CIPHER_SUITE GREATER_EQUAL "2")
 
   list(APPEND src_dirs ${ascon_file_loc})
 
-  list(APPEND src_dirs $(cse299a_ascon_loc))
+  list(APPEND src_dirs "openthread/src/core/crypto/cse299a_ascon")
 
 endif()
 # --- CSE 299A Modifications ---
