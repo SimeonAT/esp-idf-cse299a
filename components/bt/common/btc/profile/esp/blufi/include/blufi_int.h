@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2015-2024 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2015-2021 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -9,11 +9,6 @@
 
 #include "btc/btc_task.h"
 #include "esp_blufi_api.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #if (BLUFI_INCLUDED == TRUE)
 
 #define BTC_BLUFI_GREAT_VER   0x01  //Version + Subversion
@@ -198,10 +193,5 @@ void btc_blufi_cb_deep_copy(btc_msg_t *msg, void *p_dest, void *p_src);
 
 void btc_blufi_cb_deep_free(btc_msg_t *msg);
 
-#endif ///BLUFI_INCLUDED == TRUE
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif  /* __BLUFI_INT_H__ */
+#endif /* __BLUFI_INT_H__ */
+#endif  ///BLUFI_INCLUDED == TRUE

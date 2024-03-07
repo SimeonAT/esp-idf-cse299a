@@ -12,9 +12,8 @@
 #include "unity.h"
 #include "esp_rom_sys.h"
 #include "esp_sleep.h"
-#include "soc/soc_caps.h"
 
-#if SOC_LIGHT_SLEEP_SUPPORTED
+#if !TEMPORARY_DISABLED_FOR_TARGETS(ESP32P4) // TODO Light Sleep support - IDF-7528
 
 static void timer_cb1(void *arg)
 {
@@ -54,4 +53,4 @@ TEST_CASE("Test the periodic timer does not handle lost events during light slee
     TEST_ESP_OK(esp_timer_delete(periodic_timer));
 }
 
-#endif // SOC_SLEEP_SUPPORTED
+#endif //#!TEMPORARY_DISABLED_FOR_TARGETS(ESP32P4)

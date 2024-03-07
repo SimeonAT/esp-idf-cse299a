@@ -168,12 +168,7 @@ void app_main(void)
     /* Register commands */
     esp_console_register_help_command();
     register_system_common();
-#if SOC_LIGHT_SLEEP_SUPPORTED
-    register_system_light_sleep();
-#endif
-#if SOC_DEEP_SLEEP_SUPPORTED
-    register_system_deep_sleep();
-#endif
+    register_system_sleep();
 #if SOC_WIFI_SUPPORTED
     register_wifi();
 #endif

@@ -60,13 +60,13 @@ static void do_deep_sleep_from_app_cpu(void)
 
     xTaskCreatePinnedToCore(&deep_sleep_task, "ds", 2048, NULL, 5, NULL, 1);
 
-#if ( ( CONFIG_FREERTOS_SMP ) && ( !CONFIG_FREERTOS_UNICORE ) )
+#ifdef CONFIG_FREERTOS_SMP
     //Note: Scheduler suspension behavior changed in FreeRTOS SMP
     vTaskPreemptionDisable(NULL);
 #else
     // keep running some non-IRAM code
     vTaskSuspendAll();
-#endif // #if ( ( CONFIG_FREERTOS_SMP ) && ( !CONFIG_FREERTOS_UNICORE ) )
+#endif // CONFIG_FREERTOS_SMP
 
     while (true) {
         ;

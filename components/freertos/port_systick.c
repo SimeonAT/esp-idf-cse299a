@@ -201,7 +201,6 @@ BaseType_t xPortSysTickHandler(void)
     // Call FreeRTOS Increment tick function
     BaseType_t xSwitchRequired;
 #if CONFIG_FREERTOS_SMP
-    UBaseType_t uxSavedStatus = taskENTER_CRITICAL_FROM_ISR();
     // Amazon SMP FreeRTOS requires that only core 0 calls xTaskIncrementTick()
 #if ( configNUM_CORES > 1 )
     if (portGET_CORE_ID() == 0) {
@@ -212,7 +211,6 @@ BaseType_t xPortSysTickHandler(void)
 #else /* configNUM_CORES > 1 */
     xSwitchRequired = xTaskIncrementTick();
 #endif /* configNUM_CORES > 1 */
-    taskEXIT_CRITICAL_FROM_ISR(uxSavedStatus);
 #else /* !CONFIG_FREERTOS_SMP */
 #if ( configNUM_CORES > 1 )
     /*

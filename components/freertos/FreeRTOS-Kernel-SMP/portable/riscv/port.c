@@ -170,7 +170,6 @@ BaseType_t xPortCheckIfInISR(void)
 
 // ------------------ Critical Sections --------------------
 
-#if ( configNUMBER_OF_CORES > 1 )
 void IRAM_ATTR vPortTakeLock( portMUX_TYPE *lock )
 {
     spinlock_acquire( lock, portMUX_NO_TIMEOUT);
@@ -180,7 +179,6 @@ void IRAM_ATTR vPortReleaseLock( portMUX_TYPE *lock )
 {
     spinlock_release( lock );
 }
-#endif /* configNUMBER_OF_CORES > 1 */
 
 // ---------------------- Yielding -------------------------
 
@@ -488,21 +486,21 @@ void vApplicationTickHook( void )
 #endif
 
 extern void esp_vApplicationIdleHook(void);
-#if CONFIG_FREERTOS_USE_PASSIVE_IDLE_HOOK
+#if CONFIG_FREERTOS_USE_MINIMAL_IDLE_HOOK
 /*
-By default, the port uses vApplicationPassiveIdleHook() to run IDF style idle
-hooks. However, users may also want to provide their own vApplicationPassiveIdleHook().
-In this case, we use to -Wl,--wrap option to wrap the user provided vApplicationPassiveIdleHook()
+By default, the port uses vApplicationMinimalIdleHook() to run IDF style idle
+hooks. However, users may also want to provide their own vApplicationMinimalIdleHook().
+In this case, we use to -Wl,--wrap option to wrap the user provided vApplicationMinimalIdleHook()
 */
-extern void __real_vApplicationPassiveIdleHook( void );
-void __wrap_vApplicationPassiveIdleHook( void )
+extern void __real_vApplicationMinimalIdleHook( void );
+void __wrap_vApplicationMinimalIdleHook( void )
 {
     esp_vApplicationIdleHook(); //Run IDF style hooks
-    __real_vApplicationPassiveIdleHook(); //Call the user provided vApplicationPassiveIdleHook()
+    __real_vApplicationMinimalIdleHook(); //Call the user provided vApplicationMinimalIdleHook()
 }
-#else // CONFIG_FREERTOS_USE_PASSIVE_IDLE_HOOK
-void vApplicationPassiveIdleHook( void )
+#else // CONFIG_FREERTOS_USE_MINIMAL_IDLE_HOOK
+void vApplicationMinimalIdleHook( void )
 {
     esp_vApplicationIdleHook(); //Run IDF style hooks
 }
-#endif // CONFIG_FREERTOS_USE_PASSIVE_IDLE_HOOK
+#endif // CONFIG_FREERTOS_USE_MINIMAL_IDLE_HOOK
